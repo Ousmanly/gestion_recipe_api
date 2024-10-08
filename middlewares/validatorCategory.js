@@ -13,8 +13,11 @@ const addRequestCategoryValidatore = [
     .isString()
     .withMessage("name can't be number!")
     .bail()
-    .isLength({ min: 3 })
-    .withMessage('name must be at least 3 characters long!')
+    .isLength({ min: 5 })
+    .withMessage('name must be at least 5 characters long!')
+    .bail()
+    .isLength({ max: 100 })
+    .withMessage('name cannot be more than 100 characters long!')
     .bail()
     .custom(async (value) => {
       const result = await CategoryModel.checkCategory(value);
@@ -56,7 +59,7 @@ const updateRequestCategoryValidatore = [
     .isString()
     .withMessage("name can't be number!")
     .bail()
-    .isLength({ min: 3 })
+    .isLength({ max: 100 })
     .withMessage('name must be at least 3 characters long!')
     .bail()
     .custom(async (value, { req }) => {

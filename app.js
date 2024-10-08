@@ -18,7 +18,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use('/api', RecipeRouter);
 app.use('/api', Categoryrouter);
-console.log('samarrchhheeee');
 
 const port = 3005;
 app.listen(port, () => {

@@ -3,26 +3,12 @@ import RecipeModel from '../models/RecipeModel.js';
 describe('Recipe tests', () => {
   let recipeId = null;
 
-  // it('can be create', async () => {
-  //   const recipe = { title: 'crepen', type: 'desert', ingredients: 'farime', category_id: 1 };
-  //   const result = await RecipeModel.createRecipes(
-  //     recipe.title,
-  //     recipe.type,
-  //     recipe.ingredients,
-  //     recipe.category_id
-  //   );
-  //   recipeId = result.insertId;
-  //   const recipeCreated = await RecipeModel.getRecipeById(recipeId);
-  //   expect(recipeId).not.toBeNull();
-  //   expect(recipeCreated).not.toBeNull();
-  // });
-
   it('can be create', async () => {
     const recipe = {
       title: 'crepe test',
       type: 'desert',
       ingredients: 'farime, lait',
-      category_id: 53,
+      category_id: 1,
     };
     const checkTitle = await RecipeModel.checkRecipes(recipe.title);
     if (checkTitle === 0) {
@@ -61,7 +47,7 @@ describe('Recipe tests', () => {
   });
 
   it('Can delete recipes', async () => {
-    let id = 75;
+    let id = 3;
     await RecipeModel.deleteRecipes(id);
     const recipe = await RecipeModel.getRecipeById(id);
     expect(recipe).toEqual([]);
@@ -75,37 +61,13 @@ describe('Recipe tests', () => {
     expect(recipe).toEqual([]);
   });
 
-  // it('Can update recipes', async () => {
-  //   const recipe = {
-  //     id: 200,
-  //     title: 'macaronibbb',
-  //     ingredients: 'epice',
-  //     type: 'dessert',
-  //     category_id: 53
-  //   };
-  //   await RecipeModel.updateRecipes(
-  //     recipe.id,
-  //     recipe.title,
-  //     recipe.ingredients,
-  //     recipe.type,
-  //     recipe.category_id
-  //   );
-
-  //   const updatedRecipe = await RecipeModel.getRecipeById(recipe.id);
-
-  //   expect(updatedRecipe[0].title).toBe(recipe.title);
-  //   expect(updatedRecipe[0].ingredients).toBe(recipe.ingredients);
-  //   expect(updatedRecipe[0].type).toBe(recipe.type);
-  //   expect(updatedRecipe[0].category_id).toBe(recipe.category_id);
-  // });
-
   it('Can update recipes', async () => {
     const recipe = {
-      id: 202,
+      id: 1,
       title: 'crenpe Modify',
       ingredients: 'farime, Oeuf',
       type: 'dessert',
-      category_id: 53,
+      category_id: 1,
     };
     const checkTitle = await RecipeModel.checkRecipes(recipe.title);
     if (checkTitle === 0) {
@@ -116,7 +78,6 @@ describe('Recipe tests', () => {
         recipe.type,
         recipe.category_id
       );
-      // expect(updateRecipe).not.toBe(0);
 
       const updatedRecipe = await RecipeModel.getRecipeById(recipe.id);
       expect(updatedRecipe[0].title).toBe(recipe.title);
@@ -191,7 +152,7 @@ describe('Category tests', () => {
 
   it('Can update category', async () => {
     const category = {
-      id: 24,
+      id: 2,
       name: 'omelette',
     };
     await CategoryModel.updateCategories(category.id, category.name);

@@ -24,10 +24,10 @@ DROP TABLE IF EXISTS `categories`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categories` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
+  `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (71,'Category'),(53,'Default'),(69,'just test'),(68,'justtest'),(60,'justtest-1728334610358'),(61,'justtest-1728334796107'),(62,'justtest-1728334877900'),(63,'justtest-1728337813432'),(64,'justtest-1728337876253'),(65,'justtest-1728337882537'),(66,'Modify'),(24,'omelette'),(55,'Teste'),(70,'TESTMOD');
+INSERT INTO `categories` VALUES (2,'Appetizer'),(3,'Dessert'),(1,'Main Course');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -49,14 +49,15 @@ DROP TABLE IF EXISTS `recipes`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `recipes` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) NOT NULL,
+  `title` varchar(100) NOT NULL,
   `ingredients` text NOT NULL,
   `type` varchar(50) NOT NULL,
-  `category_id` int NOT NULL,
+  `category_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_category` (`category_id`),
-  CONSTRAINT `fk_category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=213 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `title` (`title`),
+  KEY `category_id` (`category_id`),
+  CONSTRAINT `recipes_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +66,7 @@ CREATE TABLE `recipes` (
 
 LOCK TABLES `recipes` WRITE;
 /*!40000 ALTER TABLE `recipes` DISABLE KEYS */;
-INSERT INTO `recipes` VALUES (202,'crenpe Modify','farime, Oeuf','dessert',53),(208,'Niébé','epiece','entry',53),(211,'bhbhbhbh','dessert','desert',53);
+INSERT INTO `recipes` VALUES (1,'Spaghetti Bolognese','Spaghetti, beef, tomato sauce','plat',1),(2,'Chocolate Cake','Flour, sugar, cocoa, eggs','desert',2),(3,'Caesar Salad','Lettuce, croutons, chicken, Caesar dressing','entry',3);
 /*!40000 ALTER TABLE `recipes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -78,4 +79,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-08  0:48:35
+-- Dump completed on 2024-10-08 13:05:29

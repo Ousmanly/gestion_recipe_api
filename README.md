@@ -57,7 +57,7 @@ Pour démarrer l'application, exécutez la commande suivante :
 - URL : /recettes
 - Méthode HTTP : GET
 - Description : Récupère la liste de toutes les recettes.
-- Exemple : ` http://localhost:3000/recettesv`
+- Exemple : ` http://localhost:3005/api/recipes`
 - Reponse :
   ```JSON
       [
@@ -80,7 +80,7 @@ Pour démarrer l'application, exécutez la commande suivante :
 - Méthode HTTP : POST
 - Description : Crée une nouvelle recette.
 - Exemple :
-  `http://localhost:3000/recettes`
+  `http://localhost:3005/api/recipes`
   - body
   ```JSON
       {"title": "Omelett",
@@ -90,7 +90,7 @@ Pour démarrer l'application, exécutez la commande suivante :
 - Reponse :
   ```JSON
       {
-          "id": 1
+          "message": "Recipe has been created succesfuly"
       }
   ```
   **Mettre à jour une recette**
@@ -98,7 +98,7 @@ Pour démarrer l'application, exécutez la commande suivante :
 - Méthode HTTP : PUT
 - Description : Met à jour une recette existante.
 - Exemple :
-  `http://localhost:3000/recettes/1`
+  `http://localhost:3005/api/recipes/1`
   - body
   ```JSON
       {"title": "Omelett",
@@ -116,58 +116,100 @@ Pour démarrer l'application, exécutez la commande suivante :
 - Méthode HTTP : DELETE
 - Description : Supprime une recette par son ID.
 - Exemple :
-  `http://localhost:3000/recettes/1`
+  `http://localhost:3005/api/recipes/1`
 - Reponse :
   ```JSON
       {
       "message": "recipe has been deleted successfully"
       }
   ```
+**Récupérer toutes les categories**
+
+- URL : /categories
+- Méthode HTTP : GET
+- Description : Récupère la liste de toutes les categories.
+- Exemple : `http://localhost:3005/api/categories`
+- Reponse :
+  ```JSON
+      [
+          {
+              "id": 1,
+              "title": "Tarte aux pommes",
+              "ingredient": "Pommes, pâte brisée, sucre",
+              "type": "Dessert"
+          },
+          {
+              "id": 2,
+              "title": "Salade César",
+              "ingredient": "Laitue, poulet, parmesan, croûtons",
+              "type": "Entrée"
+          }
+      ]
+  ```
+  **Créer une nouvelle categorie**
+- URL : /categories
+- Méthode HTTP : POST
+- Description : Crée une nouvelle categorie.
+- Exemple :
+  `http://localhost:3005/api/categories`
+  - body
+  ```JSON
+      {"title": "Omelett",
+      "ingredient": "Oeuf, Huile",
+      "type": "Plat"}
+  ```
+- Reponse :
+  ```JSON
+      {
+          "id": 1
+      }
+  ```
+  **Mettre à jour une recette**
+- URL : /categories/:id
+- Méthode HTTP : PUT
+- Description : Met à jour une categorie existante.
+- Exemple :
+  `http://localhost:3005/api/categories/1`
+  - body
+  ```JSON
+      {"title": "Omelett",
+      "ingredient": "Oeuf, Huile",
+      "type": "Plat"}
+  ```
+- Reponse :
+  ```JSON
+      {
+      "message": "categorie has been updated successfully"
+      }
+  ```
+  **Supprimer une recette**
+- URL : /categories/:id
+- Méthode HTTP : DELETE
+- Description : Supprime une categorie par son ID.
+- Exemple :
+  `http://localhost:3000/recettes/1`
+- Reponse :
+  ```JSON
+      {
+      "message": "categorie has been deleted successfully"
+      }
+  ```
 
 # Collection Postman
 
-    Vous pouvez importer la collection Postman fournie Recipe_collection.json pour tester facilement tous les endpoints de l'API.
+    Vous pouvez importer la collection Postman fournie Recipe-Category-cllection.postman_collection pour tester facilement tous les endpoints de l'API.
 
 ## Comment exécuter les tests unitaires
 
 #### Exécuter les tests
 
-- Assurez-vous que votre base de données est en cours d'exécution et que les tables nécessaires sont configurées.
+- Assurez-vous que votre base de données est en cours d'exécution et que les tables nécessaires sont configurées, importer le ficher gestion_recipes.sql qui se trouve à la racine de projet.
 - Ensuite, lancez les tests avec la commande suivante :
+
 
 ```bash
 npm test
 ```
-
-## Construire et lancer le conteneur Docker
-
-### Prérequis
-
-- Assurez-vous d'avoir Docker et Docker Compose installés sur votre machine.
-
-### Étapes
-
-1. **Créer le fichier `Dockerfile` :**
-   Si ce n'est pas déjà fait, créez un fichier `Dockerfile` à la racine de votre projet avec les instructions nécessaires pour construire l'image de votre application.
-
-2. **Créer le fichier `docker-compose.yml` :**
-   Si vous utilisez Docker Compose, assurez-vous d'avoir un fichier `docker-compose.yml` configuré.
-
-3. **Construire l'image Docker :**
-   À la racine de votre projet, exécutez la commande suivante pour construire l'image Docker :
-
-   ```bash
-   docker-compose build
-   ```
-
-4. **Lancer le conteneur Docker : Démarrez le conteneur en utilisant la commande :**
-
-```bash
-docker-compose up
-```
-
 ## Author
 
 - **GitHub** : [Ousmane Ly](https://github.com/Ousmanly)
-- **GitHub** : [Mariem Dianifaba](https://github.com/mariem2012)
-- **GitHub** : [Sem Thillo](https://github.com/semthillo)
