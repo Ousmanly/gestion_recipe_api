@@ -95,7 +95,9 @@ const deleteRequestCategoryValidatore = [
     .custom(async (value) => {
       const result = await CategoryModel.checkRecipeById(value);
       if (result) {
-        throw new Error('Cannot delete this category because it\'s used in recipes!');
+        throw new Error(
+          "Cannot delete this category because it's used in recipes!"
+        );
       }
       return true;
     }),

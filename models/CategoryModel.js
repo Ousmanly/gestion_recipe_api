@@ -28,7 +28,7 @@ class CategoryModel {
         'SELECT * FROM recipes WHERE category_id = ?',
         [id]
       );
-      return results.length>0;
+      return results.length > 0;
     } catch (error) {
       throw error;
     }

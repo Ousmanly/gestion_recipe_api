@@ -54,17 +54,16 @@ class RecipeModel {
 
   static async getAllRecipes() {
     try {
-        const [results] = await db.query(`
+      const [results] = await db.query(`
             SELECT recipes.*, categories.name AS category_name 
             FROM recipes 
             LEFT JOIN categories ON recipes.category_id = categories.id
         `);
-        return results;
+      return results;
     } catch (error) {
-        throw error;
+      throw error;
     }
-}
-
+  }
 
   static async createRecipes(title, ingredients, type, category_id) {
     try {
