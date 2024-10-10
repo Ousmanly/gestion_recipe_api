@@ -23,7 +23,7 @@ class RecipeController {
     try {
       const { title, ingredients, type, category_id } = req.body;
       await RecipeModel.createRecipes(title, ingredients, type, category_id);
-      res.status(200).send('Recipe is created successfuly');
+      res.status(200).json({"message": "Recipe has been created succesfuly"});
     } catch (error) {
       console.log(error.message);
     }
@@ -33,7 +33,7 @@ class RecipeController {
     try {
       const { id } = req.params;
       await RecipeModel.deleteRecipes(id);
-      res.status(200).send('Recipe is deleted successfuly');
+      res.status(200).json({"message": "Recipe has been deleted succesfuly"});
     } catch (error) {
       console.log(error.message);
     }
@@ -50,7 +50,7 @@ class RecipeController {
         type,
         category_id
       );
-      res.status(200).send('Recipe is updated successfuly');
+      res.status(200).json({"message": "Recipe has been updated succesfuly"});
     } catch (error) {
       console.log(error.message);
     }

@@ -63,7 +63,7 @@ describe('Recipe tests', () => {
 
   it('Can update recipes', async () => {
     const recipe = {
-      id: 1,
+      id: 2,
       title: 'crenpe Modify',
       ingredients: 'farime, Oeuf',
       type: 'dessert',

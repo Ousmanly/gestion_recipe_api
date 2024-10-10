@@ -43,14 +43,6 @@ class RecipeModel {
     }
   }
 
-  // static async getAllRecipes() {
-  //   try {
-  //     const [results] = await db.query('SELECT * FROM recipes');
-  //     return results;
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // }
 
   static async getAllRecipes() {
     try {

@@ -33,13 +33,13 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
 4. **Configurer la base de données**
 
 - Assurez-vous que Mysql est en cours d'exécution sur votre machine locale.
-- Mettez les paramètres de connexion dans `db.js`.
-- Créez un fichier .env avec la configuration de votre base de données :
+- Renomer le fichier .env.exemple par .env puis inser les informations de la configuration de votre base de données :
+- Exemple de ficher .env:
   ```js
-  DB_HOST = localhost;
-  DB_USER = root;
-  DB_PASSWORD = yourpassword;
-  DB_NAME = recipes_db;
+    DB_HOST = localhost;
+    DB_USER = user;
+    DB_PASSWORD = password;
+    DB_NAME = database;
   ```
 
 ## Utilisation
@@ -60,20 +60,24 @@ Pour démarrer l'application, exécutez la commande suivante :
 - Exemple : ` http://localhost:3005/api/recipes`
 - Reponse :
   ```JSON
-      [
-          {
-              "id": 1,
-              "title": "Tarte aux pommes",
-              "ingredient": "Pommes, pâte brisée, sucre",
-              "type": "Dessert"
-          },
-          {
-              "id": 2,
-              "title": "Salade César",
-              "ingredient": "Laitue, poulet, parmesan, croûtons",
-              "type": "Entrée"
-          }
-      ]
+    [
+        {
+            "id": 2,
+            "title": "Chocolate Cake",
+            "ingredients": "Flour, sugar, cocoa, eggs",
+            "type": "desert",
+            "category_id": 2,
+            "category_name": "omelette"
+        },
+        {
+            "id": 6,
+            "title": "crepe test",
+            "ingredients": "desert",
+            "type": "farime, lait",
+            "category_id": 1,
+            "category_name": "Main Course"
+        }
+    ]
   ```
   **Créer une nouvelle recette**
 - URL : /recettes
@@ -83,9 +87,12 @@ Pour démarrer l'application, exécutez la commande suivante :
   `http://localhost:3005/api/recipes`
   - body
   ```JSON
-      {"title": "Omelett",
-      "ingredient": "Oeuf, Huile",
-      "type": "Plat"}
+    {
+        "title": "Test recettes",
+        "ingredients": "dessert test",
+        "type": "desert",
+        "category_id": 2
+    }
   ```
 - Reponse :
   ```JSON
@@ -98,12 +105,15 @@ Pour démarrer l'application, exécutez la commande suivante :
 - Méthode HTTP : PUT
 - Description : Met à jour une recette existante.
 - Exemple :
-  `http://localhost:3005/api/recipes/1`
+  `http://localhost:3005/api/recipes/2`
   - body
   ```JSON
-      {"title": "Omelett",
-      "ingredient": "Oeuf, Huile",
-      "type": "Plat"}
+    {
+        "title": "Test modify",
+        "ingredients": "desser bbbbt",
+        "type": "desert",
+        "category_id": 2
+    }
   ```
 - Reponse :
   ```JSON
@@ -120,7 +130,7 @@ Pour démarrer l'application, exécutez la commande suivante :
 - Reponse :
   ```JSON
       {
-      "message": "recipe has been deleted successfully"
+        "message": "recipe has been deleted successfully"
       }
   ```
 **Récupérer toutes les categories**
@@ -154,44 +164,48 @@ Pour démarrer l'application, exécutez la commande suivante :
   `http://localhost:3005/api/categories`
   - body
   ```JSON
-      {"title": "Omelett",
-      "ingredient": "Oeuf, Huile",
-      "type": "Plat"}
+      {
+        "title": "Omelett",
+        "ingredient": "Oeuf, Huile",
+        "type": "Plat"
+      }
   ```
 - Reponse :
   ```JSON
       {
-          "id": 1
+        "message": "Category has been created successfully"
       }
   ```
-  **Mettre à jour une recette**
+  **Mettre à jour une categorie**
 - URL : /categories/:id
 - Méthode HTTP : PUT
 - Description : Met à jour une categorie existante.
 - Exemple :
-  `http://localhost:3005/api/categories/1`
+  `http://localhost:3005/api/categories/2`
   - body
   ```JSON
-      {"title": "Omelett",
-      "ingredient": "Oeuf, Huile",
-      "type": "Plat"}
+      {
+        "title": "Omelett",
+        "ingredient": "Oeuf, Huile",
+        "type": "Plat"
+      }
   ```
 - Reponse :
   ```JSON
       {
-      "message": "categorie has been updated successfully"
+        "message": "categorie has been updated successfully"
       }
   ```
-  **Supprimer une recette**
+  **Supprimer une categories**
 - URL : /categories/:id
 - Méthode HTTP : DELETE
 - Description : Supprime une categorie par son ID.
 - Exemple :
-  `http://localhost:3000/recettes/1`
+  `http://localhost:3000/recettes/2`
 - Reponse :
   ```JSON
       {
-      "message": "categorie has been deleted successfully"
+        "message": "categorie has been deleted successfully"
       }
   ```
 

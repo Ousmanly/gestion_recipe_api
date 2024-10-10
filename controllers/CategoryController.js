@@ -24,7 +24,7 @@ class CategoryController {
     try {
       const { name } = req.body;
       await CategoryModel.createCategories(name);
-      res.status(200).send('Category is created successfuly');
+      res.status(200).json({"message": "Category has been created succesfuly"});
     } catch (error) {
       console.log(error.message);
     }
@@ -34,7 +34,7 @@ class CategoryController {
     try {
       const { id } = req.params;
       await CategoryModel.deleteCategories(id);
-      res.status(200).send('Category is deleted successfuly');
+      res.status(200).json({"message": "Category has been deleted succesfuly"});
     } catch (error) {
       console.log(error.message);
     }
@@ -45,7 +45,7 @@ class CategoryController {
       const { id } = req.params;
       const { name } = req.body;
       await CategoryModel.updateCategories(id, name);
-      res.status(200).send('Category is updated successfuly');
+      res.status(200).json({"message": "Category has been updated succesfuly"});
     } catch (error) {
       console.log(error.message);
     }
